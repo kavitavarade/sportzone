@@ -9,7 +9,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ccc2c2;
+            background-color: #f9f9f9;
             color: #333;
         }
         #cart-container {
@@ -18,7 +18,7 @@
             padding: 2rem;
             background: white;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(112, 99, 99, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         h2 {
             text-align: center;
@@ -29,17 +29,17 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1rem 0;
-            border-bottom: 1px solid #72aec0;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
         }
         .cart-item:last-child {
             border-bottom: none;
         }
         .cart-item img {
-            width: 190px;
-            height: 180px;
+            width: 60px;
+            height: 60px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 4px;
         }
         .cart-item-details {
             flex: 1;
@@ -47,60 +47,48 @@
         }
         .cart-item-details p {
             margin: 0;
-        }
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .quantity-button {
-            background-color: #e0c4cf;
-            color: white;
-            border: none;
-            padding: 0.4rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .quantity-button:hover {
-            background-color: #afb1b4;
+            line-height: 1.5;
         }
         .remove-button {
-            background-color: #ca3838;
+            background-color: #dc3545;
             color: white;
             border: none;
             padding: 0.5rem 1rem;
+            font-size: 0.9rem;
             border-radius: 4px;
             cursor: pointer;
+            transition: background 0.3s ease;
         }
         .remove-button:hover {
             background-color: #c82333;
         }
         .total-price {
             text-align: right;
+            margin-top: 1.5rem;
             font-size: 1.2rem;
             font-weight: bold;
-            margin-top: 1rem;
-        }
-        .checkout-button {
-            display: block;
-            margin: 1.5rem auto 0;
-            background-color: #978a94;
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            padding: 0.8rem 2rem;
-            border-radius: 4px;
-            font-size: 1rem;
-            width: fit-content;
-        }
-        .checkout-button:hover {
-            background-color: #5b8364;
         }
         .empty-cart {
             text-align: center;
-            color: #493f3f;
-            font-size: 1.6rem;
-            margin-top: 6rem;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            color: #777;
+        }
+        .checkout-button {
+            display: block;
+            text-align: center;
+            margin: 1rem auto 0;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+            width: fit-content;
+        }
+        .checkout-button:hover {
+            background-color: #218838;
         }
     </style>
 </head>
@@ -111,109 +99,55 @@
         <p class="total-price">Total: ₹0</p>
         <a href="payment.html" class="checkout-button">Proceed to Checkout</a>
     </div>
-
     <script>
-        // Example cart data (normally fetched or set elsewhere in the application)
-        const sampleProducts = [
-            { id: 1, name: "Product 1", price: 500, quantity: 1, image: "https://via.placeholder.com/60" },
-            { id: 2, name: "Product 2", price: 1000, quantity: 1, image: "https://via.placeholder.com/60" },
-        ];
+        const cartContainer = document.querySelector('#cart-items');
+        const totalPriceElement = document.querySelector('.total-price');
 
-        // Initialize cart data in localStorage if not already present
-        if (!localStorage.getItem("cartItems")) {
-            localStorage.setItem("cartItems", JSON.stringify(sampleProducts));
-        }
-
-        // Get cart data from localStorage
-        const getCartItems = () => JSON.parse(localStorage.getItem("cartItems")) || [];
-
-        // Save cart data to localStorage
-        const saveCartItems = (cartItems) => {
-            localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        };
-
-        // Update cart UI
-        const updateCartUI = () => {
-            const cartItems = getCartItems();
-            const cartContainer = document.querySelector("#cart-items");
-            const totalPriceElement = document.querySelector(".total-price");
-
-            cartContainer.innerHTML = "";
+        // Update cart display
+        function updateCartDisplay() {
+            cartContainer.innerHTML = '';
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
             if (cartItems.length === 0) {
-                cartContainer.innerHTML = `<p class="empty-cart">Your cart is empty.</p>`;
-                totalPriceElement.textContent = "Total: ₹0";
-                return;
-            }
-
-            let total = 0;
-
-            cartItems.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-
-                const cartItem = document.createElement("div");
-                cartItem.className = "cart-item";
-                cartItem.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}">
-                    <div class="cart-item-details">
-                        <p>${item.name}</p>
-                        <p>Price: ₹${item.price} x ${item.quantity} = ₹${itemTotal}</p>
-                        <div class="quantity-controls">
-                            <button class="quantity-button" data-index="${index}" data-action="decrement">-</button>
-                            <span>${item.quantity}</span>
-                            <button class="quantity-button" data-index="${index}" data-action="increment">+</button>
+                cartContainer.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
+            } else {
+                cartItems.forEach((item, index) => {
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <p>${item.name}</p>
+                            <p>Price: ₹${item.price}</p>
                         </div>
-                    </div>
-                    <button class="remove-button" data-index="${index}">Remove</button>
-                `;
-                cartContainer.appendChild(cartItem);
-            });
+                        <button class="remove-button" data-index="${index}">Remove</button>
+                    `;
+                    cartContainer.appendChild(cartItem);
+                });
 
-            totalPriceElement.textContent = `Total: ₹${total}`;
-
-            // Attach event listeners
-            attachEventListeners();
-        };
-
-        // Attach event listeners for buttons
-        const attachEventListeners = () => {
-            document.querySelectorAll(".quantity-button").forEach((button) =>
-                button.addEventListener("click", handleQuantityChange)
-            );
-            document.querySelectorAll(".remove-button").forEach((button) =>
-                button.addEventListener("click", handleRemoveItem)
-            );
-        };
-
-        // Handle quantity change
-        const handleQuantityChange = (event) => {
-            const index = event.target.getAttribute("data-index");
-            const action = event.target.getAttribute("data-action");
-            const cartItems = getCartItems();
-
-            if (action === "increment") {
-                cartItems[index].quantity += 1;
-            } else if (action === "decrement" && cartItems[index].quantity > 1) {
-                cartItems[index].quantity -= 1;
+                // Attach event listeners to remove buttons
+                document.querySelectorAll('.remove-button').forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        const index = event.target.getAttribute('data-index');
+                        removeItemFromCart(index);
+                    });
+                });
             }
 
-            saveCartItems(cartItems);
-            updateCartUI();
-        };
+            const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+            totalPriceElement.textContent = `Total: ₹${totalPrice}`;
+        }
 
-        // Handle remove item
-        const handleRemoveItem = (event) => {
-            const index = event.target.getAttribute("data-index");
-            const cartItems = getCartItems();
+        // Remove an item from the cart
+        function removeItemFromCart(index) {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
             cartItems.splice(index, 1);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartDisplay();
+        }
 
-            saveCartItems(cartItems);
-            updateCartUI();
-        };
-
-        // Initialize the cart UI
-        updateCartUI();
+        // Initial call to display cart
+        updateCartDisplay();
     </script>
 </body>
 </html>
