@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Video and Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(54, 59, 50);
+        }
+        header {
+            text-align: center;
+            background-color: #f3eded;
+            color: rgb(63, 10, 10);
+            padding: 2px;
+            margin-top: 90px;
+        }
+
+        /* Image Section with Full-Width Zoom Effect */
+        .img-container {
+            width: 100%;
+            height: 550px;
+            position: relative;
+            overflow: hidden;
+        }
+        .img-wrapper {
+            width: 100%;
+            height: 200%;
+            position: relative;
+        }
+        .img-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(1);
+            transition: transform 1.5s ease, opacity 1.5s ease;
+        }
+        .img-wrapper img.active {
+            opacity: 1;
+            transform: scale(1.2); /* Zoom in */
+        }
+
+        /* Gallery Section */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background-color: rgb(195, 198, 202);
+            border: 1px solid #8d7b7b;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 15px;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            padding: -40px;
+        }
+        .card-description {
+            font-size: 14px;
+            color: #555;
+        }
+  
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sports Video and Gallery</h1>
+    <p>Enjoy sports videos followed by an image gallery.</p>
+</header>
+
+<!-- Image Section -->
+<div class="img-container">
+    <div class="img-wrapper">
+        <img src="cricket.jpg" alt="Cricket">
+        <img src="gym.jpg" alt="Gym">
+        <img src="hocky.jpg" alt="Hockey">
+        <img src="img1.jpg" alt="Miscellaneous">
+    </div>
+</div>
+
+<!-- Gallery Section -->
+<div class="gallery-container" id="gallery">
+    <div class="card">
+        <a href="cricket.jpg" download="cricket.jpg">
+            <img src="cricket.jpg" alt="Cricket">
+        </a>
+        <div class="card-content">
+            <p class="card-title">Cricket</p>
+            <p class="card-description">A bat-and-ball game played between two teams of eleven players on a field.</p>
+        </div>
+    </div>
+    <div class="card">
+        <a href="gym.jpg" download="gym.jpg">
+            <img src="gym.jpg" alt="Gym">
+        </a>
+        <div class="card-content">
+            <p class="card-title">Gym</p>
+            <p class="card-description">A place for fitness enthusiasts to work out and improve their physical health.</p>
+        </div>
+    </div>
+    <div class="card">
+        <a href="hocky.jpg" download="hocky.jpg">
+            <img src="hocky.jpg" alt="Hockey">
+        </a>
+        <div class="card-content">
+            <p class="card-title">Hockey</p>
+            <p class="card-description">A fast-paced sport played with a stick and a puck on ice or field.</p>
+        </div>
+    </div>
+    <div class="card">
+        <a href="soccer1.jpg" download="soccer1.jpg">
+            <img src="soccer1.jpg" alt="Soccer">
+        </a>
+        <div class="card-content">
+            <p class="card-title">Soccer</p>
+            <p class="card-description">The world's most popular sport, played with a ball between two teams.</p>
+        </div>
+    </div>
+    <div class="card">
+        <a href="tennies.webp" download="tennies.webp">
+            <img src="tennies.webp" alt="Tennis">
+        </a>
+        <div class="card-content">
+            <p class="card-title">Tennis</p>
+            <p class="card-description">A racket sport played individually or in doubles on a court.</p>
+        </div>
+    </div>
+    <div class="card">
+        <a href="basketball.jpg" download="basketball.jpg">
+            <img src="basketball.jpg" alt="Basketball">
+        </a>
+        <div class="card-content">
+            <p class="card-title">Basketball</p>
+            <p class="card-description">A team sport played on a court with a hoop and ball.</p>
+        </div>
+    </div>
+    <div class="card">
+        <a href="swimming.jpg" download="swimming.jpg">
+            <img src="swimming.jpg" alt="Swimming">
+        </a>
+        <div class="card-content">
+            <p class="card-title">Swimming</p>
+            <p class="card-description">An individual or team water sport that tests speed and endurance.</p>
+        </div>
+    </div>
+    <div class="card">
+        <a href="vollyball.jpg" download="vollyball.jpg">
+            <img src="vollyball.jpg" alt="Volleyball">
+        </a>
+        <div class="card-content">
+            <p class="card-title">Volleyball</p>
+            <p class="card-description">A team sport where players hit a ball over a net to score points.</p>
+        </div>
+    </div>
+    <div class="card">
+        <a href="boxing11.jpg" download="boxing11.jpg">
+            <img src="boxing11.jpg" alt="Boxing">
+        </a>
+        <div class="card-content">
+            <p class="card-title">Boxing</p>
+            <p class="card-description">A combat sport where players throw punches at each other.</p>
+        </div>
+    </div>
+    <div class="card">
+        <a href="golf.jpg" download="golf.jpg">
+            <img src="golf.jpg" alt="Golf">
+        </a>
+        <div class="card-content">
+            <p class="card-title">Golf</p>
+            <p class="card-description">A high-intensity sport involving a ball and full-contact play.</p>
+        </div>
+    </div>
+    <div class="card">
+        <a href="athelety.jpg" download="athelety.jpg">
+            <img src="athelety.jpg" alt="Athletics">
+        </a>
+        <div class="card-content">
+            <p class="card-title">Athletics</p>
+            <p class="card-description">Track and field events that test speed, strength, and endurance.</p>
+        </div>
+    </div>
+    <div class="card">
+        <a href="cycling.jpg" download></a>
+            <img src="cycling.jpg" alt="Cycling">
+        </a>
+        <div class="card-content">
+            <p class="card-title">Cycling</p>
+            <p class="card-description">A sport that involves riding bicycles for speed and endurance.</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-icons">
+        <a href="#" class="fab fa-facebook-f"></a>
+        <a href="#" class="fab fa-twitter"></a>
+        <a href="#" class="fab fa-instagram"></a>
+    </div>
+    <p>&copy; 2025 Sports Gallery | All rights reserved</p>
+</footer>
+
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<script>
+    const images = document.querySelectorAll('.img-wrapper img');
+    let currentImageIndex = 0;
+
+    function showNextImage() {
+        // Remove the "active" class from the current image
+        images[currentImageIndex].classList.remove('active');
+        
+        // Update the index to the next image
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        
+        // Add the "active" class to the new image
+        images[currentImageIndex].classList.add('active');
+    }
+
+    // Initially show the first image
+    images[currentImageIndex].classList.add('active');
+
+    // Change images every 3 seconds
+    setInterval(showNextImage, 9000);
+</script>
+
+</body>
+</html>
