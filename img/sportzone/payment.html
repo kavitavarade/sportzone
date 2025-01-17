@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page with QR Code Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        #payment-container {
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background-color: rgb(197, 183, 183);
+            border-radius: 8px;
+            box-shadow: 0 33px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #613f3f;
+            margin-bottom: 1.5rem;
+        }
+        .qr-code {
+            display: block;
+            margin: 1rem auto;
+            width: 250px;
+            height: 250px;
+        }
+        .confirm-button {
+            display: block;
+            margin: 1rem auto;
+            padding: 1rem 2rem;
+            background-color: #a886a0;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+        }
+        .confirm-button:hover {
+            background-color: #218838;
+        }
+        #scanner-section {
+            display: none;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        #scanner-container {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 1rem;
+        }
+        #start-scan {
+            background-color: #535a61;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+        }
+        #start-scan:hover {
+            background-color: #54708d;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="payment-container">
+        <h2>Confirm Payment</h2>
+        <p>Please scan the QR code below to complete your payment.</p>
+
+        <!-- QR Code Display -->
+        <img id="qr-code" class="qr-code" src="c:\Users\Admin\Downloads\WhatsApp Image 2025-01-16 at 1.45.32 AM.jpeg" alt="QR Code">
+
+        <!-- Confirm Payment Button -->
+        <a href="#" class="confirm-button" id="confirm-payment">Confirm Payment</a>
+
+        <!-- Scan QR Code Scanner Section (Only Visible on Confirm) -->
+        <div id="scanner-section">
+            <h3>Scan QR Code to Confirm</h3>
+            <div id="scanner-container"></div>
+            <button id="start-scan">Start QR Code Scan</button>
+            <p id="scan-result"></p>
+        </div>
+    </div>
+
+    <!-- Include the html5-qrcode library -->
+    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+
+    -->
+    </script>
+
+</body>
+</html>

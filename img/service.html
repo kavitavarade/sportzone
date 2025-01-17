@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Website - Services</title>
+  <!-- Font Awesome Link -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ebecee, #e2b9c8);
+      color: #fff;
+    }
+
+    .services-section {
+      padding: 40px 15px;
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #fff;
+    }
+
+    .services-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .services-header p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .services-grid {
+      display: flex;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: #fff;
+      color: #333;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .service-card i {
+      font-size: 50px;
+      margin-bottom: 15px;
+      transition: color 0.3s;
+    }
+
+    .service-card h2 {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .service-card button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      font-size: 0.9rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .service-card button:hover {
+      background: #0056b3;
+      transform: scale(1.1);
+    }
+
+    /* Unique Colors for Each Card */
+    .card-training {
+      border-top: 5px solid #ff5733;
+    }
+
+    .card-training i {
+      color: #ff5733;
+    }
+
+    .card-equipment {
+      border-top: 5px solid #ffc107;
+    }
+
+    .card-equipment i {
+      color: #ffc107;
+    }
+
+    .card-event {
+      border-top: 5px solid #28a745;
+    }
+
+    .card-event i {
+      color: #28a745;
+    }
+
+    .card-coaching {
+      border-top: 5px solid #17a2b8;
+    }
+
+    .card-coaching i {
+      color: #17a2b8;
+    }
+
+    @media (max-width: 768px) {
+      .services-header h1 {
+        font-size: 2rem;
+      }
+
+      .services-header p {
+        font-size: 0.95rem;
+      }
+
+      .service-card {
+        padding: 10px;
+      }
+
+      .service-card h2 {
+        font-size: 1.4rem;
+      }
+
+      .service-card p {
+        font-size: 0.85rem;
+      }
+
+      .service-card button {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="services-section">
+    <div class="services-header">
+      <h1>Our Premium Services</h1>
+      <p>Discover our wide range of professional sports services tailored to meet your needs. We are here to help you excel and enjoy every moment.</p>
+    </div>
+    <div class="services-grid">
+      <!-- Training Programs Card -->
+      <div class="service-card card-training">
+        <i class="fas fa-dumbbell"></i>
+        <h2>Training Programs</h2>
+        <p>Professional training sessions for beginners and pros in various sports.</p>
+        <button>Learn More</button>
+      </div>
+      <!-- Equipment Rental Card -->
+      <div class="service-card card-equipment">
+        <i class="fas fa-basketball-ball"></i>
+        <h2>Equipment Rental</h2>
+        <p>Rent the latest and best-quality sports equipment at affordable prices.</p>
+        <button>Learn More</button>
+      </div>
+      <!-- Event Management Card -->
+      <div class="service-card card-event">
+        <i class="fas fa-calendar-alt"></i>
+        <h2>Event Management</h2>
+        <p>Organize tournaments and events with our expert planning services.</p>
+        <button>Learn More</button>
+      </div>
+      <!-- Personal Coaching Card -->
+      <div class="service-card card-coaching">
+        <i class="fas fa-user"></i>
+        <h2>Personal Coaching</h2>
+        <p>One-on-one coaching sessions tailored to your skill level and goals.</p>
+        <button>Learn More</button>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

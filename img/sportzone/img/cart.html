@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        #cart-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .cart-item-details {
+            flex: 1;
+            margin-left: 1rem;
+        }
+        .cart-item-details p {
+            margin: 0;
+            line-height: 1.5;
+        }
+        .remove-button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .remove-button:hover {
+            background-color: #c82333;
+        }
+        .total-price {
+            text-align: right;
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .empty-cart {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            color: #777;
+        }
+        .checkout-button {
+            display: block;
+            text-align: center;
+            margin: 1rem auto 0;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+            width: fit-content;
+        }
+        .checkout-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div id="cart-container">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <p class="total-price">Total: ₹0</p>
+        <a href="payment.html" class="checkout-button">Proceed to Checkout</a>
+    </div>
+    <script>
+        const cartContainer = document.querySelector('#cart-items');
+        const totalPriceElement = document.querySelector('.total-price');
+
+        // Update cart display
+        function updateCartDisplay() {
+            cartContainer.innerHTML = '';
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+            if (cartItems.length === 0) {
+                cartContainer.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
+            } else {
+                cartItems.forEach((item, index) => {
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <p>${item.name}</p>
+                            <p>Price: ₹${item.price}</p>
+                        </div>
+                        <button class="remove-button" data-index="${index}">Remove</button>
+                    `;
+                    cartContainer.appendChild(cartItem);
+                });
+
+                // Attach event listeners to remove buttons
+                document.querySelectorAll('.remove-button').forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        const index = event.target.getAttribute('data-index');
+                        removeItemFromCart(index);
+                    });
+                });
+            }
+
+            const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+            totalPriceElement.textContent = `Total: ₹${totalPrice}`;
+        }
+
+        // Remove an item from the cart
+        function removeItemFromCart(index) {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.splice(index, 1);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartDisplay();
+        }
+
+        // Initial call to display cart
+        updateCartDisplay();
+    </script>
+</body>
+</html>
